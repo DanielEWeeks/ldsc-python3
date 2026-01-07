@@ -162,7 +162,8 @@ def read_reference_ld_scores(args: Any, logger: Any) -> pd.DataFrame:
         elif args.ref_ld_chr:
             pattern = ps.sub_chr(args.ref_ld_chr, "[1-22]")
             logger.log(f"Reading reference panel LD Scores from {pattern} ...")
-            ref_ld = ps.ldscore_fromlist(split_paths(args.ref_ld_chr))
+            ref_ld = ps.ldscore_fromlist(split_paths(args.ref_ld_chr), num=NUM_CHROMOSOMES)
+            # ref_ld = ps.ldscore_fromlist(split_paths(args.ref_ld_chr))
         else:
             raise ValueError("No reference LD Scores provided.")
     except Exception as e:
@@ -225,7 +226,8 @@ def read_m(args: Any, logger: Any, num_annotations: int) -> np.ndarray:
         if args.ref_ld:
             m_annot_list = ps.M_fromlist(split_paths(args.ref_ld), common=(not args.not_M_5_50))
         elif args.ref_ld_chr:
-            m_annot_list = ps.M_fromlist(split_paths(args.ref_ld_chr), common=(not args.not_M_5_50))
+            m_annot_list = ps.M_fromlist(split_paths(args.ref_ld_chr), num=NUM_CHROMOSOMES, common=(not args.not_M_5_50))
+            # m_annot_list = ps.M_fromlist(split_paths(args.ref_ld_chr), common=(not args.not_M_5_50))
         else:
             raise ValueError("No reference LD Scores provided for M.")
 
@@ -260,7 +262,8 @@ def read_regression_weight_ld_scores(args: Any, logger: Any) -> pd.DataFrame:
         elif args.w_ld_chr:
             pattern = ps.sub_chr(args.w_ld_chr, "[1-22]")
             logger.log(f"Reading regression weight LD Scores from {pattern} ...")
-            w_ld = ps.ldscore_fromlist(split_paths(args.w_ld_chr))
+            w_ld = ps.ldscore_fromlist(split_paths(args.w_ld_chr), num = NUM_CHROMOSOMES)
+            # w_ld = ps.ldscore_fromlist(split_paths(args.w_ld_chr))
         else:
             raise ValueError("No regression weight LD Scores provided.")
     except Exception as e:

@@ -842,7 +842,8 @@ if __name__ == "__main__":
                     raise ValueError("Must set either --frqfile and --ref-ld or --frqfile-chr and --ref-ld-chr")
 
             if args.rg:
-                sumstats.estimate_rg(args, log)
+                sumstats.estimate_genetic_correlation(args, log)
+                # sumstats.estimate_rg(args, log)
             elif args.h2:
                 sumstats.estimate_h2(args, log)
             elif args.h2_cts:
